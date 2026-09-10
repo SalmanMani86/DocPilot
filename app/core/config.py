@@ -1,4 +1,5 @@
 from functools import lru_cache
+from pathlib import Path
 from typing import Literal
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -20,6 +21,9 @@ class Settings(BaseSettings):
     log_level: str = "INFO"
     host: str = "0.0.0.0"
     port: int = 8000
+    database_url: str = "postgresql+psycopg://docpilot:docpilot@localhost:5432/docpilot"
+    document_storage_path: Path = Path("data/documents")
+    max_upload_size_bytes: int = 25 * 1024 * 1024
 
 
 @lru_cache
